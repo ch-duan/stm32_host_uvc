@@ -11,8 +11,8 @@ set(cpu_PARAMS ${cpu_PARAMS}
     # Other parameters
     # -mcpu, -mfloat, -mfloat-abi, ...
     -mcpu=cortex-m4
-    -mfpu=fpv4-sp-d16
     -mfloat-abi=hard
+    -mfpu=fpv4-sp-d16
 )
 
 # Linker script
@@ -22,9 +22,6 @@ set(linker_script_SRC ${linker_script_SRC}
 
 # Sources
 set(sources_SRCS ${sources_SRCS}
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video_desc_parsing.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video_stream_parsing.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/dma.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/freertos.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/gpio.c
@@ -36,23 +33,9 @@ set(sources_SRCS ${sources_SRCS}
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/usart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Startup/startup_stm32f407zgtx.s
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App/usb_host.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target/usbh_conf.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/AUDIO/Src/usbh_audio.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/croutine.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/list.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/queue.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/tasks.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/timers.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_5.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video_desc_parsing.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Src/usbh_video_stream_parsing.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
@@ -71,50 +54,69 @@ set(sources_SRCS ${sources_SRCS}
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/AUDIO/Src/usbh_audio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/list.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_5.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/queue.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/timers.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App/usb_host.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target/usbh_conf.c
 )
 
 # Include directories
 set(include_c_DIRS ${include_c_DIRS}
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib/VIDEO
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib/VIDEO/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/QB2_protocol_parser
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Include
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/AUDIO/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/HID/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/MTP/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target
 )
 set(include_cxx_DIRS ${include_cxx_DIRS}
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib/VIDEO
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib/VIDEO/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}Core/lib
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/QB2_protocol_parser
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/lib/VIDEO/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Include
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/AUDIO/Inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/HID/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/MTP/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/App
+    ${CMAKE_CURRENT_SOURCE_DIR}/USB_HOST/Target
 )
 set(include_asm_DIRS ${include_asm_DIRS}
     
@@ -122,16 +124,16 @@ set(include_asm_DIRS ${include_asm_DIRS}
 
 # Symbols definition
 set(symbols_c_SYMB ${symbols_c_SYMB}
-    "DEBUG"
     "DATA_IN_ExtSRAM"
-    "USE_HAL_DRIVER"
+    "DEBUG"
     "STM32F407xx"
+    "USE_HAL_DRIVER"
 )
 set(symbols_cxx_SYMB ${symbols_cxx_SYMB}
-    "DEBUG"
     "DATA_IN_ExtSRAM"
-    "USE_HAL_DRIVER"
+    "DEBUG"
     "STM32F407xx"
+    "USE_HAL_DRIVER"
 )
 set(symbols_asm_SYMB ${symbols_asm_SYMB}
     "DEBUG"
